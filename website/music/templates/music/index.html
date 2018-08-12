@@ -1,0 +1,101 @@
+{% load fontawesome %}
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RV Music Player</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'music/styles.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'music/bootstrap.css' %}"/>
+    {% fontawesome_stylesheet %}
+    <style>
+    {#    .blurimg{#}
+    {#        -webkit-filter: blur(50px);#}
+    {#            -webkit-transform: translate3d(0,0,0) translateZ(0);#}
+    {#-webkit-perspective: 1000px;#}
+    {#-webkit-backface-visibility: hidden;#}
+    {#position: absolute;#}
+    {#top: 0;#}
+    {#left: 0;#}
+    {#width: 100%;#}
+    {#height: 100%;#}
+    {#z-index: -1;#}
+    {#    }#}
+    {#    .blurimg:after{#}
+    {#            content: '';#}
+    {#position: absolute;#}
+    {#width: 100%;#}
+    {#height: 100%;#}
+    {#top: 0;#}
+    {#left: 0;#}
+    {#display: block;#}
+    {#    }#}
+        table{
+            width:100%;
+            border-collapse:collapse;
+            padding:10px;
+            color:white;
+        }
+        td,th{
+            text-align:left;
+            padding:10px;
+            border-bottom:1px solid lightgray;
+        }
+    </style>
+</head>
+<body style="font-family:Arial">
+<div style="position:fixed;top:0;left:0;width:100%;background-color:transparent;color:white;padding:5px;border-bottom:3px solid tomato;">
+<a href="{% url 'index' %}"><h1><i class="fa fa-1g fa-heart"></i> RV Music Player
+    <i class="fa fa-search" style="float:right;margin-right:5%"></i></h1></a>
+</div>
+<br><br><br><br><br>
+{% if not album_id %}
+{% for album in all_albums %}
+<div class="col-md-3" style="color:dodgerblue;text-align:center;">
+    <a href="{{ album.id }}"><img src="{% static "music/images/" %}{{ album.album_logo}}" alt="{{ album.album_title }}" style="width:200px;height:200px;border-radius:10px;box-shadow:1px 2px 3px lightgray"></a>
+<br>
+<p>{{ album.album_title }}</p>
+</div>
+{% endfor %}
+{% else %}
+    <h1>{{ album.song_title }}</h1>
+{% for album in all_albumss %}
+<h1>Album ID: {{ album.song_title }}</h1>
+{% endfor %}
+{% endif %}
+{#<div style="padding:10px;color:white;background:linear-gradient(lightgray,black)">#}
+{#<div>#}
+{#    {% if all_albums %}#}
+{#    <img src="" style="border-radius:10px;float:left;margin-left:5%">#}
+{#    <h1>Geetha Govindam</h1>#}
+{#    <p>Music By Gopi Sundar</p>#}
+{#<table style='border-collapse:collapse'>#}
+{#    <tr>#}
+{#        <th>S.No</th>#}
+{#        <th>Title</th>#}
+{#        <th>Artist</th>#}
+{#        <th>Duration</th>#}
+{#    </tr>#}
+{#    {%  for album in all_albums %}#}
+{#    <tr>#}
+{#        <td>{{ album.id }}</td>#}
+{#        <td><a href="{{ album.id }}/" style="text-decoration:none;color:white">{{ album.album_title }}</a></td>#}
+{#        <td>{{ album.artist }}</td>#}
+{#        <td>04:19</td>#}
+{#    </tr>#}
+{#    {% endfor %}#}
+{#</table>#}
+{#</div>#}
+{#        </div>#}
+{#{% else %}#}
+{#    <h1>You don't have any albums</h1>#}
+{#{%  endif %}#}
+{#<div class="blurimg">#}
+{#    <img title="Heartless Song" alt="Heartless Song" src="{% static 'music/images/bharat ane nenu.png' %}">#}
+{#</div>#}
+<div style="position:fixed;bottom:0;left:0;width:100%;">
+<audio style="width:100%;padding:5px 0 0 0;" controls src="http://sensongsmp3.co.in/mp3/2018/Geetha%20Govindam%20(2018)/01%20-%20Inkem%20Inkem%20Inkem%20Kaavaale%20-%20SenSongsMp3.Co.mp3" type="audio/mp3"></audio>
+</div>
+</body>
+</html>
